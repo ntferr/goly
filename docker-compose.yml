@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+
+  postgres:
+    container_name: postgres-container
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USERNAME: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+      POSTGRES_DB: admin
+    ports:
+      - "5432:5432"
+    volumes:
+      - /home/duducp/PostgreSQL:/var/lib/postgresql/data
+    networks:
+      - postgres-compose-network
+      
+  pgadmin4:
+    container_name: pg_admin-container
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "postgres@email.com"
+      PGADMIN_DEFAULT_PASSWORD: "postgres"
+    ports:
+      - "15432:80"
+    depends_on:
+      - postgres
+    networks:
+      - postgres-compose-network
+
+networks: 
+  postgres-compose-network:
+    driver: bridge
