@@ -27,7 +27,7 @@
             disabled="{data.random}" class="{ data.random ? "disabled" : "" }">
         
         <label for="isRandom">Randomly Generated Goly</label>
-        <input type="checkbox" name="isRandom" id="isRandom" bind:value="{data.random}">
+        <input type="checkbox" name="isRandom" id="isRandom" bind:checked="{data.random}">
 
         <div class="actions">
             <button on:click="{closeModal}">Cancel</button>
